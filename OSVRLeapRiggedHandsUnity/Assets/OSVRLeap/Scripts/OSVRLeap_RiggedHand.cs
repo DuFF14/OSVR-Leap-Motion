@@ -9,7 +9,7 @@ using System.Collections;
 using Leap;
 
 // Class to setup a rigged hand based on a model.
-public class OSVRLeap_RiggedHand : OSVRLeap_HandModel {
+public class RiggedHand : HandModel {
 	
   public Vector3 modelFingerPointing = Vector3.forward;
   public Vector3 modelPalmFacing = -Vector3.up;
@@ -23,20 +23,13 @@ public class OSVRLeap_RiggedHand : OSVRLeap_HandModel {
   }
 
   public override void UpdateHand() {
-    handInfo_ = (IsLeft ? Analogs.LeftHand : Analogs.RightHand);
-    SetOsvrLeapHandInfo(handInfo_);
     if (palm != null) {
-      // vector = Quaternion.Euler(0, -45, 0) * vector;
-
       palm.position = GetPalmPosition();
       palm.rotation = GetPalmRotation() * Reorientation();
-      if (IsLeft) {
-        palm.rotation = palm.rotation * Quaternion.AngleAxis(180, modelPalmFacing);
-      }
     }
 
-    //if (forearm != null)
-    //  forearm.rotation = GetArmRotation() * Reorientation();
+    if (forearm != null)
+      forearm.rotation = GetArmRotation() * Reorientation();
 
     for (int i = 0; i < fingers.Length; ++i) {
       if (fingers[i] != null) {

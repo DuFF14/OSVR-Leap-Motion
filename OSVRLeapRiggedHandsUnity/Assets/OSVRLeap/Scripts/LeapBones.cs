@@ -13,7 +13,7 @@ namespace LeapOsvrTest {
     public const int TrackersPerHand = 23;
     //public const string RawTrackerPath = "/com_osvr_LeapMotion/Controller/tracker/";
 
-    public OsvrContextProvider ContextProvider;
+    public OSVR.Unity.ClientKit ContextProvider;
     public LeapAnalogs Analogs;
     public bool InitializePalmsOnly = true;
 
@@ -41,7 +41,7 @@ namespace LeapOsvrTest {
       int i = (InitializePalmsOnly ? 2 : 0);
       int inc = (InitializePalmsOnly ? TrackersPerHand : 1);
       int count = vGameObjects.Length;
-      ClientContext cont = ContextProvider.Context;
+      ClientContext cont = ContextProvider.context;
 
       for ( ; i < count ; i += inc ) {
         string path = GetTrackerPath(i);

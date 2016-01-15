@@ -36,7 +36,7 @@ namespace LeapOsvrTest {
       public PoseInterface PalmInterface;
     }
 
-    public OsvrContextProvider ContextProvider;
+    public OSVR.Unity.ClientKit ContextProvider;
 
     public HandInfo LeftHand { get; private set; }
     public HandInfo RightHand { get; private set; }
@@ -50,7 +50,7 @@ namespace LeapOsvrTest {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /*--------------------------------------------------------------------------------------------*/
     public void Start() {
-      ClientContext c = ContextProvider.Context;
+      ClientContext c = ContextProvider.context;
 
       vDeviceConnectionInterface = AnalogInterface.GetInterface(c, "/connection/device");
       vServiceConnectionInterface = AnalogInterface.GetInterface(c, "/connection/service");
@@ -69,7 +69,7 @@ namespace LeapOsvrTest {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     /*--------------------------------------------------------------------------------------------*/
     private HandInfo BuildHandInfo(string pPath, bool isLeft) {
-      ClientContext c = ContextProvider.Context;
+      ClientContext c = ContextProvider.context;
       var info = new HandInfo();
       info.IsLeft = isLeft;
       info.RiggedHandAlignmentRotation = RiggedHandAlignment;

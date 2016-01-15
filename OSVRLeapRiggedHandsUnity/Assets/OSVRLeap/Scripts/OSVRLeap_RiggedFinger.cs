@@ -14,7 +14,7 @@ using Leap;
  * The class expects that the graphics model bones corresponding to bones in the Leap Motion 
  * hand model are in the same order in the bones array.
  */
-public class OSVRLeap_RiggedFinger : OSVRLeap_FingerModel {
+public class RiggedFinger : FingerModel {
 
   /** Allows the mesh to be stretched to align with finger joint positions
    * Only set to true when mesh is not visible
@@ -30,12 +30,11 @@ public class OSVRLeap_RiggedFinger : OSVRLeap_FingerModel {
 
   /** Updates the bone rotations. */
   public override void UpdateFinger() {
-
     for (int i = 0; i < bones.Length; ++i) {
       if (bones[i] != null) {
         bones[i].rotation = GetBoneRotation(i) * Reorientation();
-        if (handInfo_.IsLeft) {
-          bones[i].rotation = bones[i].rotation * Quaternion.AngleAxis(180, modelPalmFacing);
+        if (deformPosition) {
+          bones[i].position = GetBoneCenter(i);
         }
       }
     }

@@ -12,7 +12,7 @@ namespace LeapOsvrTest {
 		public const int ImageHeight = 64;
 		public const int ImageChannels = 3;
 
-		public OsvrContextProvider ContextProvider;
+		public OSVR.Unity.ClientKit ContextProvider;
 		public bool IsLeft;
 
 		private ImagingInterface vInterface;
@@ -36,7 +36,7 @@ namespace LeapOsvrTest {
 		////////////////////////////////////////////////////////////////////////////////////////////////
 		/*--------------------------------------------------------------------------------------------*/
 		public void Start() {
-			vInterface = ImagingInterface.GetInterface(ContextProvider.Context,
+			vInterface = ImagingInterface.GetInterface(ContextProvider.context,
 				"/camera/"+(IsLeft ? "left" : "right")+"/distortion");
 			vInterface.StateChanged += HandleChanged;
 
