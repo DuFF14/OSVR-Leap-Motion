@@ -26,3 +26,5 @@
 *.exe
 *.out
 *.app
+OSVRLeapRiggedHandsUnity/Library/
+OSVRLeapRiggedHandsUnity/Temp/
